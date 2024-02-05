@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            padding: 12px; /* Add extra padding for the heading cells */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>To-Do App</h1>
+
+    <table>
+        <tr>
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+            <th>Task Name</th>
+            <th>Action</th>
+            <th>Due Date</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+            <th><a href="{% url 'add-task' %}">ADD TASK</a></th>
+        </tr>
+
+            {% for Obj in obj%}
+                 <tr>
+            <td>{{ Obj.task_name }}</td>
+            <td>{{ Obj.complete}}</td>
+            <td>{{ Obj.due_date}}</td>
+            <td>{{ Obj.description }}</td>
+            <td><a href="{% url 'update-task' Obj.id %}">Edit</a></td>
+            <td><a href="{% url 'delete-task' Obj.id %}">Delete</a></td>
+
+                  </tr>
+            {% endfor %}
+
+
+    </table>
+
+</body>
+</html>
